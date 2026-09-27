@@ -1,0 +1,27 @@
+---
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const eventos = await getCollection('eventos');
+  return eventos.map((evento) => ({
+    params: { slug: evento.id },
+    props: { evento },
+  }));
+}
+
+const { evento } = Astro.props;
+const { Content } = await render(evento);
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{evento.data.titulo}</title>
+  </head>
+  <body>
+    <h1>{evento.data.titulo}</h1>
+    <p>{evento.data.lugar}</p>
+    <p>{evento.data.precio}</p>
+    <Content />
+  </body>
+</html>
