@@ -1,85 +1,61 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Map from "../components/MapaInteractivo.astro";
+import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout>
-    <main>
-        <div class="max-w-4xl mx-auto px-4 mt-8">
-            <header
-                class="fixed top-0 left-0 w-full h-16 bg-blue-900 z-50 shadow-md flex items-center justify-center"
-            >
-                <h1
-                    class="self-center text-xl font-semibold whitespace-nowrap text-white"
-                >
-                    Karlamaps
-                </h1>
-            </header>
+<Layout title="Bienvenido a Web Turismo">
+    <!-- Animacion con viewtransition -->
+    <main 
+        transition:name="fondo-azul" 
+        class="min-h-screen bg-gradient-to-b from-blue-900 from-[70%] to-black to-[95%] flex flex-col items-center justify-center py-12 px-4"
+    >
+        
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-12 tracking-wide text-center">
+            Turismo Maps
+        </h1>
+
+        <!-- Eventos destacados -->
+        <div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/20 hover:scale-105 transition-transform">
+                <img src="https://via.placeholder.com/600x300/e2e8f0/475569?text=Lugar+Destacado+1" alt="Placeholder" class="w-full h-48 object-cover" />
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white mb-2">Parque Nacional Talampaya</h3>
+                    <p class="text-gray-300 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/20 hover:scale-105 transition-transform">
+                <img src="https://via.placeholder.com/600x300/e2e8f0/475569?text=Lugar+Destacado+2" alt="Placeholder" class="w-full h-48 object-cover" />
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white mb-2">Cuesta de Miranda</h3>
+                    <p class="text-gray-300 text-sm">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/20 hover:scale-105 transition-transform">
+                <img src="https://via.placeholder.com/600x300/e2e8f0/475569?text=Lugar+Destacado+3" alt="Placeholder" class="w-full h-48 object-cover" />
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white mb-2">Laguna Brava</h3>
+                    <p class="text-gray-300 text-sm">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur.</p>
+                </div>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/20 hover:scale-105 transition-transform">
+                <img src="https://via.placeholder.com/600x300/e2e8f0/475569?text=Lugar+Destacado+4" alt="Placeholder" class="w-full h-48 object-cover" />
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-white mb-2">Fiesta de la Chaya</h3>
+                    <p class="text-gray-300 text-sm">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+
         </div>
-        <section id="mapa" class="w-full px-4 md:px-8 pt-19 mb-12">
-            <div
-                class="max-w-7xl mx-auto h-165 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/50 bg-white"
-            >
-                <Map />
-            </div>
-        </section>
 
-        <section
-            class="bg-white max-w-4xl mx-auto min-h-screen shadow-2xl p-6 md:p-12 md:rounded-t-xl"
+        <a 
+            href="/explorar" 
+            class="px-8 py-4 bg-white text-blue-900 text-lg font-bold rounded-full shadow-xl hover:bg-gray-100 hover:shadow-2xl transition-all transform hover:-translate-y-1"
         >
-            <div
-                id="informacion-lugares"
-                class="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
-                <article class="border rounded-lg overflow-hidden shadow-sm">
-                    <img
-                        src="https://picsum.photos/seed/montana/400/200"
-                        alt="Lugar turístico"
-                        class="w-full h-48 object-cover"
-                    />
-                    <div class="p-4">
-                        <h3 class="font-bold text-lg mb-2">Cerro Catedral</h3>
-                        <p class="text-gray-600 text-sm">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                        </p>
-                    </div>
-                </article>
+            Explorar más
+        </a>
 
-                <article class="border rounded-lg overflow-hidden shadow-sm">
-                    <img
-                        src="https://picsum.photos/seed/lugar2/400/200"
-                        alt="Lugar 2"
-                        class="w-full h-48 object-cover"
-                    />
-                    <div class="p-4">
-                        <h3 class="font-bold text-lg mb-2">
-                            Lugar Turístico 2
-                        </h3>
-                        <p class="text-gray-600 text-sm">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit.
-                        </p>
-                    </div>
-                </article>
-
-                <article class="border rounded-lg overflow-hidden shadow-sm">
-                    <img
-                        src="https://picsum.photos/seed/lugar3/400/200"
-                        alt="Lugar 3"
-                        class="w-full h-48 object-cover"
-                    />
-                    <div class="p-4">
-                        <h3 class="font-bold text-lg mb-2">
-                            Lugar Turístico 3
-                        </h3>
-                        <p class="prose-slate">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi provident doloremque enim culpa consectetur consequatur dignissimos harum maxime, nihil sed nam quisquam cumque dolore aliquid molestias possimus modi quaerat natus.
-                            elit.
-                        </p>
-                    </div>
-                </article>
-            </div>
-        </section>
     </main>
 </Layout>
