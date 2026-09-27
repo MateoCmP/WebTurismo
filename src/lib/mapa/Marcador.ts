@@ -1,9 +1,19 @@
 import L from 'leaflet';
-import { customIcon } from './IconoMarca';
-import type { Punto } from '../../data/puntos';
+import { crearIcono, type TipoMarcador } from './IconoMarca';
 
-export function crearMarcador(map: L.Map, punto: Punto): L.Marker {
-  return L.marker([punto.lat, punto.lng], { icon: customIcon })
+export interface PuntoMapa {
+  slug: string;
+  nombre: string;
+  lat: number;
+  lng: number;
+  tipo: TipoMarcador;
+  url: string;
+}
+
+export function crearMarcador(map: L.Map, punto: PuntoMapa): L.Marker {
+  const icono = crearIcono(punto.tipo);
+
+  return L.marker([punto.lat, punto.lng], { icon: icono })
     .addTo(map)
-    .bindPopup(punto.nombre);
+    .bindPopup(`<a href="${punto.url}">${punto.nombre}</a>`);
 }

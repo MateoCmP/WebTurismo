@@ -1,9 +1,25 @@
-export interface Punto {
-lat: number;
-lng: number;
-nombre: string;
-}
-// esto despues se cambia para cada punto de interes que se quiera agregar al mapa
-export const puntos: Punto[] = [
-{ lat: -29.4131, lng: -66.8558, nombre: "Centro" }
-];
+import { defineCollection, z } from 'astro:content';
+
+const lugares = defineCollection({
+  type: 'content',
+  schema: z.object({
+    nombre: z.string(),
+    lat: z.number(),
+    lng: z.number(),
+    categoria: z.enum(['historico', 'natural', 'gastronomico']),
+    imagen: z.string().optional(),
+  }),
+});
+
+const eventos = defineCollection({
+  type: 'content',
+  schema: z.object({
+    nombre: z.string(),
+    lat: z.number(),
+    lng: z.number(),
+    fecha: z.date(),
+    imagen: z.string().optional(),
+  }),
+});
+
+export const collections = { lugares, eventos };
