@@ -1,14 +1,10 @@
 import L from 'leaflet';
-// @ts-expect-error Leaflet's CSS is handled by the bundler.
 import 'leaflet/dist/leaflet.css';
-import { puntos } from '../../data/puntos';
-import { crearMarcador } from './Marcador';
+import { crearMarcador, type PuntoMapa } from './Marcador';
 
-export function initMap(containerId: string) {
-  const map = L.map(containerId).setView(
-    [puntos[0].lat, puntos[0].lng],
-    14
-  );
+export function initMap(containerId: string, puntos: PuntoMapa[]) {
+  const centro = puntos[0] ?? { lat: -29.4131, lng: -66.8558 };
+  const map = L.map(containerId).setView([centro.lat, centro.lng], 14);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors',
