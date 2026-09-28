@@ -1,7 +1,7 @@
 import L from 'leaflet';
 
 const colores = {
-  historico: '#8d5524',
+  historico: '#a356d6',
   natural: '#2a9d8f',
   gastronomico: '#e76f51',
   evento: '#e63946',
