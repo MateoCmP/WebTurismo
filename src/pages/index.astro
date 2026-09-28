@@ -1,11 +1,91 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Nexotour">
+    <!-- El transition:name vuelve al main, como en tu versión original que sí funcionaba -->
+    <main
+        transition:name="fondo-azul"
+        class="relative min-h-screen flex flex-col items-center justify-center py-12 px-4 overflow-hidden"
+    >
+        <!-- Imagen de fondo local -->
+        <div 
+            class="absolute inset-0 bg-cover bg-center bg-no-repeat -z-20"
+            style="background-image: url('/img/talampaya.png');"
+        ></div>
+
+        <!-- Degradado inferior -->
+        <div class="absolute inset-0 bg-linear-to-b from-transparent from-60% to-black to-100% -z-10"></div>
+
+        <!-- Contenido principal -->
+        <div class="relative z-10 w-full flex flex-col items-center">
+            
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-12 tracking-wide text-center drop-shadow-lg">
+                Nexotour
+            </h1>
+
+            <div class="flex flex-col items-center w-full max-w-350 mx-auto">
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mb-12">
+        
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/20 hover:scale-105 transition-transform">
+                        <img src="https://via.placeholder.com/600x300/e2e8f0/475569?text=Lugar+Destacado+1" alt="Placeholder" class="w-full h-48 object-cover" />
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold text-white mb-2">Parque Nacional Talampaya</h3>
+                            <p class="text-gray-300 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/20 hover:scale-105 transition-transform">
+                        <img src="https://via.placeholder.com/600x300/e2e8f0/475569?text=Lugar+Destacado+2" alt="Placeholder" class="w-full h-48 object-cover" />
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold text-white mb-2">Cuesta de Miranda</h3>
+                            <p class="text-gray-300 text-sm">Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/20 hover:scale-105 transition-transform">
+                        <img src="https://via.placeholder.com/600x300/e2e8f0/475569?text=Lugar+Destacado+3" alt="Placeholder" class="w-full h-48 object-cover" />
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold text-white mb-2">Laguna Brava</h3>
+                            <p class="text-gray-300 text-sm">Duis aute irure dolor in reprehenderit in voluptate velit.</p>
+                        </div>
+                    </div>
+        
+                </div> 
+
+                <div class="flex justify-center items-center">
+                    <a
+                        href="/explorar"
+                        class="group flex flex-col md:flex-row items-center justify-center gap-3 bg-blue-600 text-white font-bold text-lg px-8 py-5 md:py-4 rounded-3xl md:rounded-full shadow-lg border border-blue-500 hover:bg-blue-700 hover:shadow-blue-900/20 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                    >
+                        <span>Explorar Mapa</span>
+                        <svg
+                            class="w-6 h-6 group-hover:animate-[doble-salto_1.5s_ease-in-out_infinite]"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2.5"
+                                d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+                        </svg>
+                    </a>
+                </div>
+
+            </div> 
+            
+        </div>
+    </main>
 </Layout>
+
+<style is:global>
+    @keyframes doble-salto {
+        0%, 60%, 100% { transform: translateY(0); }
+        15% { transform: translateY(-6px); }
+        30% { transform: translateY(0); }
+        45% { transform: translateY(-6px); }
+    }
+</style>

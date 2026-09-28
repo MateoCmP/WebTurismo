@@ -1,16 +1,29 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+const lugares = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/lugares' }),
+  schema: z.object({
+    nombre: z.string(),
+    lat: z.number(),
+    lng: z.number(),
+    categoria: z.enum(['historico', 'natural', 'gastronomico']),
+    imagen: z.string().optional(),
+  }),
+});
+
 const eventos = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/eventos' }),
   schema: z.object({
     titulo: z.string(),
     fecha: z.coerce.date(),
     lugar: z.string(),
+    lat: z.number().optional(),
+    lng: z.number().optional(),
     categoria: z.enum(['cultural', 'gastronomico', 'aventura', 'deportivo']),
     imagen: z.string(),
     precio: z.string().optional(),
   }),
 });
 
-export const collections = { eventos };
+export const collections = { lugares, eventos };

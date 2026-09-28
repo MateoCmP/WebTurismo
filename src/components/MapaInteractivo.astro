@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import type { PuntoMapa } from "../lib/mapa/Marcador";
+
+const lugares = await getCollection("lugares");
+const eventos = await getCollection("eventos");
+
+const puntos: PuntoMapa[] = [
+  ...lugares.map((l) => ({
+    slug: l.id,
+    nombre: l.data.nombre,
+    lat: l.data.lat,
+    lng: l.data.lng,
+    tipo: l.data.categoria,
+    url: `/lugares/${l.id}`,
+  })),
+  ...eventos.map((e) => ({
+    slug: e.id,
+    nombre: e.data.nombre,
+    lat: e.data.lat,
+    lng: e.data.lng,
+    tipo: "evento" as const,
+    url: `/eventos/${e.id}`,
+  })),
+];
+---
+
+<div id="map" class="w-full h-full z-0"></div>
+
+<style>
+  .custom-marker {
+    background: transparent;
+    border: none;
+  }
+
+  .marker-inner {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .custom-marker:hover .marker-inner {
+    transform: scale(1.6);
+  }
+</style>
+
+<script is:inline define:vars={{ puntos }}>
+  window.puntosMapa = puntos;
+</script>
+
+<script>
+  import { initMap } from "../lib/mapa/InitMapa";
+
+  initMap("map", window.puntosMapa);
+</script>
