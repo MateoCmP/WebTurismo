@@ -25,14 +25,11 @@ const puntos: PuntoMapa[] = [
 ];
 ---
 
-<div id="map"></div>
+<!-- Tu parte: Clases de Tailwind aplicadas al div -->
+<div id="map" class="w-full h-full z-0"></div>
 
 <style>
-  #map {
-    width: 100%;
-    height: 500px;
-  }
-
+  /* Tu parte: El CSS estático #map fue eliminado, queda solo lo de los marcadores */
   .custom-marker {
     background: transparent;
     border: none;
@@ -52,8 +49,16 @@ const puntos: PuntoMapa[] = [
   }
 </style>
 
-<script define:vars={{ puntos }}>
-  import { initMap } from "../lib/map/initMap";
+<!-- 1. Pasamos los datos al entorno del navegador (sin imports aquí) -->
+<script is:inline define:vars={{ puntos }}>
+  window.puntosMapa = puntos;
+</script>
 
-  initMap("map", puntos);
+<!-- 2. Importamos y ejecutamos la lógica de tu colega como un módulo normal -->
+<script>
+  // Corregimos la ruta a la carpeta "mapa" que tu compañero había escrito mal
+  import { initMap } from "../lib/mapa/InitMapa";
+
+  // Ejecutamos la función usando los datos que guardamos en el paso anterior
+  initMap("map", window.puntosMapa);
 </script>
