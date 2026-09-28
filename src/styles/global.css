@@ -15,7 +15,7 @@
 
 /* Controla la velocidad de la "cortina" en ambas direcciones (forwards y backwards) */
 ::view-transition-group(fondo-azul) {
-  animation-duration: 0.5s !important;
+  animation-duration: 0.25s !important;
   animation-timing-function: ease-in-out !important;
 }
 
