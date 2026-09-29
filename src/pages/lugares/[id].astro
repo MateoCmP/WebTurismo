@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
@@ -11,32 +12,31 @@ export async function getStaticPaths() {
 }
 
 const { lugar } = Astro.props;
-
 const { Content } = await render(lugar);
 ---
 
 <Layout title={`${lugar.data.nombre} - Nexotour`}>
     
+    <header class="fixed top-0 left-0 w-full h-16 bg-white/80 backdrop-blur-md border-b border-gray-200 z-50 shadow-sm flex items-center px-6">
+        <a href="/explorar" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 transition-colors">
+            &larr; Volver al mapa
+        </a>
+    </header>
+
     <main transition:name="fondo-azul" class="relative min-h-screen pb-12 pt-28 px-4">
         
         <div class="fixed inset-0 bg-cover bg-center bg-no-repeat -z-20" style="background-image: url('/img/talampaya.png');"></div>
         <div class="fixed inset-0 bg-gray-50/95 backdrop-blur-xl -z-10"></div>
 
-        <header class="fixed top-0 left-0 w-full h-16 bg-white/80 backdrop-blur-md border-b border-gray-200 z-50 shadow-sm flex items-center px-6">
-            <a href="/explorar" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 transition-colors">
-                &larr; Volver al mapa
-            </a>
-        </header>
-
         <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200">
             
             <div class="w-full h-64 md:h-96 relative bg-gray-200">
                 {lugar.data.imagen && (
-                    <img 
+                    <Image 
                         src={lugar.data.imagen} 
                         alt={lugar.data.nombre} 
                         class="w-full h-full object-cover"
-                        transition:name={`img-${lugar.id}`} 
+                        transition:name={`img-lugares-${lugar.id}`} 
                     />
                 )}
             </div>
@@ -48,14 +48,14 @@ const { Content } = await render(lugar);
                 
                 <h1 
                     class="text-4xl md:text-5xl font-bold text-gray-900 mb-8"
-                    transition:name={`title-${lugar.id}`}
+                    transition:name={`title-lugares-${lugar.id}`}
                 >
                     {lugar.data.nombre}
                 </h1>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                     
-                    <div class="md:col-span-2 text-gray-700 text-lg leading-relaxed">
+                    <div class="md:col-span-2 text-gray-700 text-lg leading-relaxed prose prose-lg max-w-none">
                         <Content />
                     </div>
                     
@@ -68,7 +68,6 @@ const { Content } = await render(lugar);
                                     <strong class="text-blue-900 flex items-center gap-2 mb-1">
                                         🕒 Horarios de visita:
                                     </strong>
-                                    <!-- Si existe 'horario' en frontmatter del markdown se muestra, sino muestra por defecto -->
                                     <span class="pl-6 text-gray-600">{lugar.data.horario || '08:00 AM - 18:00 PM'}</span>
                                 </li>
                                 
