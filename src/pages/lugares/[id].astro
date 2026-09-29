@@ -1,0 +1,100 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+    const lugares = await getCollection('lugares');
+    return lugares.map(lugar => ({
+        params: { id: lugar.id },
+        props: { lugar },
+    }));
+}
+
+const { lugar } = Astro.props;
+
+const { Content } = await render(lugar);
+---
+
+<Layout title={`${lugar.data.nombre} - Nexotour`}>
+    
+    <main transition:name="fondo-azul" class="relative min-h-screen pb-12 pt-28 px-4">
+        
+        <div class="fixed inset-0 bg-cover bg-center bg-no-repeat -z-20" style="background-image: url('/img/talampaya.png');"></div>
+        <div class="fixed inset-0 bg-gray-50/95 backdrop-blur-xl -z-10"></div>
+
+        <header class="fixed top-0 left-0 w-full h-16 bg-white/80 backdrop-blur-md border-b border-gray-200 z-50 shadow-sm flex items-center px-6">
+            <a href="/explorar" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 transition-colors">
+                &larr; Volver al mapa
+            </a>
+        </header>
+
+        <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200">
+            
+            <div class="w-full h-64 md:h-96 relative bg-gray-200">
+                {lugar.data.imagen && (
+                    <img 
+                        src={lugar.data.imagen} 
+                        alt={lugar.data.nombre} 
+                        class="w-full h-full object-cover"
+                        transition:name={`img-${lugar.id}`} 
+                    />
+                )}
+            </div>
+
+            <div class="p-8 md:p-12">
+                <span class="text-sm font-bold uppercase tracking-wider text-blue-600 mb-2 block">
+                    {lugar.data.categoria || 'Destino'}
+                </span>
+                
+                <h1 
+                    class="text-4xl md:text-5xl font-bold text-gray-900 mb-8"
+                    transition:name={`title-${lugar.id}`}
+                >
+                    {lugar.data.nombre}
+                </h1>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    
+                    <div class="md:col-span-2 text-gray-700 text-lg leading-relaxed">
+                        <Content />
+                    </div>
+                    
+                    <aside>
+                        <div class="bg-blue-50 rounded-2xl p-6 border border-blue-100">
+                            <h3 class="text-xl font-bold text-blue-900 mb-5">Información Útil</h3>
+                            
+                            <ul class="space-y-4 text-sm text-gray-800">
+                                <li class="flex flex-col">
+                                    <strong class="text-blue-900 flex items-center gap-2 mb-1">
+                                        🕒 Horarios de visita:
+                                    </strong>
+                                    <!-- Si existe 'horario' en frontmatter del markdown se muestra, sino muestra por defecto -->
+                                    <span class="pl-6 text-gray-600">{lugar.data.horario || '08:00 AM - 18:00 PM'}</span>
+                                </li>
+                                
+                                <li class="flex flex-col">
+                                    <strong class="text-blue-900 flex items-center gap-2 mb-1">
+                                        ⏳ Duración estimada:
+                                    </strong>
+                                    <span class="pl-6 text-gray-600">{lugar.data.duracion || 'Aproximadamente 2 horas'}</span>
+                                </li>
+
+                                <li class="flex flex-col">
+                                    <strong class="text-blue-900 flex items-center gap-2 mb-1">
+                                        📍 Ubicación:
+                                    </strong>
+                                    <span class="pl-6 text-gray-600">{lugar.data.ubicacion || 'Provincia de La Rioja'}</span>
+                                </li>
+                            </ul>
+                            
+                            <button class="mt-8 w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
+                                Cómo llegar
+                            </button>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>
