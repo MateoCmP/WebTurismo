@@ -1,5 +1,4 @@
 import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import { crearMarcador, type PuntoMapa } from './Marcador';
 
 export function initMap(containerId: string, puntos: PuntoMapa[]) {

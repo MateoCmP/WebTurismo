@@ -2,6 +2,8 @@
 titulo: "Bus Turistico City Tour Panoramico"
 fecha: 2026-10-02
 lugar: "Plaza 25 de Mayo, Av. San Nicolas de Bari 499-599"
+lat: -29.41324943993193
+lng: -66.855851596334458567
 categoria: "cultural"
 imagen: "./bus-turistico.jpg"
 precio: "Consultar en agencias adheridas"

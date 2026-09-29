@@ -1,29 +1,8 @@
 ---
-import { getCollection } from "astro:content";
-import type { PuntoMapa } from "../lib/mapa/Marcador";
 import "leaflet/dist/leaflet.css";
+import { obtenerPuntos } from "../lib/mapa/puntos";
 
-const lugares = await getCollection("lugares");
-const eventos = await getCollection("eventos");
-
-const puntos: PuntoMapa[] = [
-  ...lugares.map((l) => ({
-    slug: l.id,
-    nombre: l.data.nombre,
-    lat: l.data.lat,
-    lng: l.data.lng,
-    tipo: l.data.categoria,
-    url: `/lugares/${l.id}`,
-  })),
-  ...eventos.map((e) => ({
-    slug: e.id,
-    nombre: e.data.titulo,
-    lat: e.data.lat,
-    lng: e.data.lng,
-    tipo: "evento" as const,
-    url: `/eventos/${e.id}`,
-  })),
-];
+const puntos = await obtenerPuntos();
 ---
 
 <div id="map" class="w-full h-full z-0" data-puntos={JSON.stringify(puntos)}>

@@ -2,6 +2,8 @@
 titulo: "Fiesta Patronal de San Francisco"
 fecha: 2026-10-04
 lugar: "Plaza 25 de Mayo"
+lat: -29.41312693266084
+lng: -66.8565061469495
 categoria: "cultural"
 imagen: "./fiesta.jpg"
 precio: "Gratis"

@@ -2,6 +2,8 @@
 titulo: "Fiesta Nacional del Torrontes Riojano"
 fecha: 2026-02-14
 lugar: "Chilecito"
+lat: -29.160532439855583
+lng: -67.49742510678325
 categoria: "gastronomico"
 imagen: "./fiesta-torrentes.jpg"
 precio: "A confirmar"

@@ -1,7 +1,7 @@
 ---
 nombre: "Catedral de La Rioja"
-lat: -29.4142
-lng: -66.8567
+lat: -29.4134855360447 
+lng: -66.85621499941216
 categoria: "historico"
 imagen: "./catedral.jpg"
 ubicacion: "Av. San Nicolás de Bari, La Rioja Capital"
