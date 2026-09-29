@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import type { PuntoMapa } from "../lib/mapa/Marcador";
+import "leaflet/dist/leaflet.css";
 
 const lugares = await getCollection("lugares");
 const eventos = await getCollection("eventos");
@@ -52,8 +53,17 @@ const puntos: PuntoMapa[] = [
   import { initMap } from "../lib/mapa/InitMapa";
   import type { PuntoMapa } from "../lib/mapa/Marcador";
 
-  const el = document.getElementById("map") as HTMLElement;
-  const puntos: PuntoMapa[] = JSON.parse(el.dataset.puntos ?? "[]");
+  let map: ReturnType<typeof initMap> | undefined;
 
-  initMap("map", puntos);
+  document.addEventListener("astro:page-load", () => {
+    const el = document.getElementById("map");
+    if (!el) return;
+    const puntos: PuntoMapa[] = JSON.parse(el.dataset.puntos ?? "[]");
+    map = initMap("map", puntos);
+  });
+
+  document.addEventListener("astro:before-swap", () => {
+    map?.remove();
+    map = undefined;
+  });
 </script>
