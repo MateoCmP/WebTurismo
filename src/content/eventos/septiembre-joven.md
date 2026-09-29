@@ -7,6 +7,8 @@ imagen: "./septiembre-joven.jpg"
 precio: "Gratis"
 horario: "20:00 - 02:00"
 duracion: "2 noches"
+lat: -29.439206327025413
+lng: -66.89879191732636
 ---
 
 Desde 1996, La Rioja celebra con este festival a la juventud de toda la provincia. Durante dos noches consecutivas, el Parque de la Ciudad se transforma en un gran escenario que combina talento local con artistas de renombre nacional.

@@ -7,6 +7,8 @@ imagen: "./paseo-sauces.jpg"
 precio: "Gratis, excursiones con costo adicional"
 horario: "09:00 a 00:00, excursiones de 16:00 a 20:00"
 duracion: "Medio dia"
+lat: -29.388926664322945
+lng: -66.98367648663884
 
 ---
 

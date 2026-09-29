@@ -1,7 +1,9 @@
 ---
 titulo: "Maraton Internacional de La Rioja"
 fecha: 2026-11-08
-lugar: "Circuito Costanera - La Rioja Capital"
+lugar: "Parque de la Ciudad, La Rioja Capital"
+lat: -29.44065
+lng: -66.89345
 categoria: "deportivo"
 imagen: "./maraton-la-rioja.jpg"
 precio: "Inscripcion con costo"

@@ -7,6 +7,8 @@ imagen: "./trekking-talampaya.jpg"
 precio: "Consultar tarifa de excursion"
 horario: "08:00 - 17:00"
 duracion: "Aproximadamente 3 horas"
+lat: -29.8
+lng: -67.833
 ---
 
 Una experiencia unica para quienes buscan conectar con uno de los paisajes mas impresionantes de Argentina. El recorrido guiado atraviesa los imponentes canones de arenisca roja, esculpidos por el viento y el agua durante millones de anios.

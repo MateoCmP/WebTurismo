@@ -1,12 +1,14 @@
 ---
 titulo: "Fiesta Nacional de la Chaya"
 fecha: 2027-02-13
-lugar: "La Rioja Capital"
 categoria: "cultural"
 imagen: "./chaya.jpg"
 precio: "Gratis"
 horario: "16:00 en adelante"
 duracion: "Varios dias"
+lugar: "Autodromo Ciudad de La Rioja"
+lat: -29.40528
+lng: -66.88083
 ---
 
 La Chaya es la fiesta mas emblematica de la provincia y una de las celebraciones de carnaval mas autenticas del pais. Durante varios dias, riojanos y visitantes se reunen para celebrar a la Pachamama con musica, baile, y el tradicional ritual de "chayar": mojarse y espolvorearse con harina y talco en senial de buena suerte y agradecimiento a la tierra.
