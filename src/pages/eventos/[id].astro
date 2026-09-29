@@ -1,0 +1,103 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+    const eventos = await getCollection('eventos');
+    return eventos.map(evento => ({
+        params: { id: evento.id },
+        props: { evento },
+    }));
+}
+
+const { evento } = Astro.props;
+const { Content } = await render(evento);
+---
+
+<Layout title={`${evento.data.titulo} - Nexotour`}>
+    
+    <header class="fixed top-0 left-0 w-full h-16 bg-white/80 backdrop-blur-md border-b border-gray-200 z-50 shadow-sm flex items-center px-6">
+        <a href="/explorar" class="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 transition-colors">
+            &larr; Volver al mapa
+        </a>
+    </header>
+
+    <main transition:name="fondo-azul" class="relative min-h-screen pb-12 pt-28 px-4">
+        
+        <div class="fixed inset-0 bg-cover bg-center bg-no-repeat -z-20" style="background-image: url('/img/talampaya.png');"></div>
+        <div class="fixed inset-0 bg-gray-50/95 backdrop-blur-xl -z-10"></div>
+
+        <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-200">
+            
+            <div class="w-full h-64 md:h-96 relative bg-gray-200">
+                {evento.data.imagen && (
+                    <Image 
+                        src={evento.data.imagen} 
+                        alt={evento.data.titulo} 
+                        class="w-full h-full object-cover"
+                        transition:name={`img-eventos-${evento.id}`} 
+                    />
+                )}
+            </div>
+
+            <div class="p-8 md:p-12">
+                <span class="text-sm font-bold uppercase tracking-wider text-orange-600 mb-2 block">
+                    {evento.data.categoria}
+                </span>
+                
+                <h1 
+                    class="text-4xl md:text-5xl font-bold text-gray-900 mb-8"
+                    transition:name={`title-eventos-${evento.id}`}
+                >
+                    {evento.data.titulo}
+                </h1>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    
+                    <div class="md:col-span-2 text-gray-700 text-lg leading-relaxed prose prose-lg prose-blue max-w-none">
+                        <Content />
+                    </div>
+                    
+                    <aside>
+                        <div class="bg-orange-50 rounded-2xl p-6 border border-orange-100">
+                            <h3 class="text-xl font-bold text-orange-900 mb-5">Detalles del Evento</h3>
+                            
+                            <ul class="space-y-4 text-sm text-gray-800">
+                                <li class="flex flex-col">
+                                    <strong class="text-orange-900 flex items-center gap-2 mb-1">
+                                        📅 Fecha:
+                                    </strong>
+                                    <span class="pl-6 text-gray-600">
+                                        {evento.data.fecha.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })}
+                                    </span>
+                                </li>
+                                
+                                <li class="flex flex-col">
+                                    <strong class="text-orange-900 flex items-center gap-2 mb-1">
+                                        📍 Lugar:
+                                    </strong>
+                                    <span class="pl-6 text-gray-600">{evento.data.lugar}</span>
+                                </li>
+
+                                {evento.data.precio && (
+                                    <li class="flex flex-col">
+                                        <strong class="text-orange-900 flex items-center gap-2 mb-1">
+                                            🎟️ Entrada:
+                                        </strong>
+                                        <span class="pl-6 text-gray-600 font-semibold">{evento.data.precio}</span>
+                                    </li>
+                                )}
+                            </ul>
+                            
+                            <button class="mt-8 w-full bg-orange-600 text-white font-bold py-3 rounded-xl hover:bg-orange-700 shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5">
+                                Conseguir Entradas
+                            </button>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>

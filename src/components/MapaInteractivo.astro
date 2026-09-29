@@ -17,7 +17,7 @@ const puntos: PuntoMapa[] = [
   })),
   ...eventos.map((e) => ({
     slug: e.id,
-    nombre: e.data.nombre,
+    nombre: e.data.titulo,
     lat: e.data.lat,
     lng: e.data.lng,
     tipo: "evento" as const,
