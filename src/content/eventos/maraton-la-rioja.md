@@ -3,8 +3,14 @@ titulo: "Maraton Internacional de La Rioja"
 fecha: 2026-11-08
 lugar: "Circuito Costanera - La Rioja Capital"
 categoria: "deportivo"
-imagen: "/img/maraton-la-rioja.jpg"
+imagen: "./maraton-la-rioja.jpg"
 precio: "Inscripcion con costo"
+horario: "07:00 largada"
+duracion: "Aproximadamente 3 horas"
 ---
 
-Competencia con circuitos de 5K, 10K y 21K por la costanera de la ciudad, abierta a corredores de todas las edades y niveles.
+Uno de los eventos deportivos mas convocantes del calendario riojano, que reune cada anio a corredores de distintas provincias y paises limitrofes. El circuito recorre la costanera de la ciudad, ofreciendo a los participantes vistas del rio y las sierras que rodean la capital.
+
+La competencia cuenta con tres distancias para todos los niveles: 5K para quienes recien empiezan, 10K para corredores intermedios, y 21K (media maraton) para los mas experimentados. Ademas de la premiacion general, hay categorias por edad y una mencion especial a los equipos institucionales.
+
+La jornada incluye tambien actividades para toda la familia, con una posta infantil y stands de nutricion deportiva a lo largo del recorrido.
