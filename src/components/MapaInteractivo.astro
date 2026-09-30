@@ -1,12 +1,12 @@
 ---
 import "leaflet/dist/leaflet.css";
+import MapaIsla from "./MapaIsla.vue";
 import { obtenerPuntos } from "../lib/mapa/puntos";
 
 const puntos = await obtenerPuntos();
 ---
 
-<div id="map" class="w-full h-full z-0" data-puntos={JSON.stringify(puntos)}>
-</div>
+<MapaIsla client:visible puntos={puntos} />
 
 <style is:global>
   .custom-marker {
@@ -27,22 +27,3 @@ const puntos = await obtenerPuntos();
     transform: scale(1.6);
   }
 </style>
-
-<script>
-  import { initMap } from "../lib/mapa/InitMapa";
-  import type { PuntoMapa } from "../lib/mapa/Marcador";
-
-  let map: ReturnType<typeof initMap> | undefined;
-
-  document.addEventListener("astro:page-load", () => {
-    const el = document.getElementById("map");
-    if (!el) return;
-    const puntos: PuntoMapa[] = JSON.parse(el.dataset.puntos ?? "[]");
-    map = initMap("map", puntos);
-  });
-
-  document.addEventListener("astro:before-swap", () => {
-    map?.remove();
-    map = undefined;
-  });
-</script>
